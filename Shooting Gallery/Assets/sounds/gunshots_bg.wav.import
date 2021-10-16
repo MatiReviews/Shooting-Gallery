@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gunshots_bg.wav-5507c2ba6ef74072cb890c27c42841cb.sample"
+
+[deps]
+
+source_file="res://Assets/sounds/gunshots_bg.wav"
+dest_files=[ "res://.import/gunshots_bg.wav-5507c2ba6ef74072cb890c27c42841cb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Colt_shot.wav-f33a6268e19d92f034c0b1f5ef57c573.sample"
+
+[deps]
+
+source_file="res://Assets/sounds/Colt/Colt_shot.wav"
+dest_files=[ "res://.import/Colt_shot.wav-f33a6268e19d92f034c0b1f5ef57c573.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

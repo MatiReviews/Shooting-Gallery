@@ -1,0 +1,248 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Scenes/weapons.gd" type="Script" id=1]
+[ext_resource path="res://Assets/sounds/Colt/Colt_shot_New.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola6.png" type="Texture" id=5]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola7.png" type="Texture" id=6]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola4.png" type="Texture" id=8]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola5.png" type="Texture" id=9]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola8.png" type="Texture" id=10]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola9.png" type="Texture" id=11]
+[ext_resource path="res://Assets/textures/Weapons/Colt/pistola10.png" type="Texture" id=12]
+[ext_resource path="res://Assets/textures/Weapons/Colt/Reload.png" type="Texture" id=13]
+[ext_resource path="res://Assets/textures/Weapons/Colt/magFull.png" type="Texture" id=14]
+[ext_resource path="res://Assets/textures/Weapons/Colt/mag.png" type="Texture" id=15]
+[ext_resource path="res://Assets/sounds/Colt/Colt_Reload_1.wav" type="AudioStream" id=16]
+[ext_resource path="res://Assets/sounds/Colt/Colt_Reload_3.wav" type="AudioStream" id=17]
+[ext_resource path="res://Assets/sounds/Colt/Colt_Reload_2.wav" type="AudioStream" id=18]
+
+[sub_resource type="Animation" id=1]
+resource_name = "lastBullet"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Area2D/AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.1, 0.13, 0.17, 0.2, 0.23, 0.26, 0.29 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1, 2, 2, 3, 3, 4, 5, 6, 10 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shootSound"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "reload"
+length = 1.39
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Area2D/AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.28, 1.31, 1.34, 1.37 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 7, 8, 9, 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.94, 1.26, 1.35, 1.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reloadSound1"
+}, {
+"args": [  ],
+"method": "_reloadSound2"
+}, {
+"args": [  ],
+"method": "_reloadSound3"
+}, {
+"args": [ false ],
+"method": "_setReloading"
+}, {
+"args": [  ],
+"method": "_finishShooting"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Area2D/Cargador:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area2D/Cargador:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.16, 0.34, 0.7, 0.9, 1.26 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -13.3484, 122.382 ), Vector2( -13.3484, 675.429 ), Vector2( -261.629, 675.429 ), Vector2( -261.629, 675.429 ), Vector2( -13.3484, 675.429 ), Vector2( -13.3484, 122.382 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "reset"
+length = 0.001
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Area2D/AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Area2D/AnimatedSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Area2D/AnimatedSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.33
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Area2D/AnimatedSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.04, 0.06, 0.1, 0.13, 0.17, 0.2, 0.22, 0.24, 0.26, 0.28, 0.31, 0.33 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1, 2, 2, 3, 3, 4, 5, 6, 7, 8, 9, 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.33 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_shootSound"
+}, {
+"args": [  ],
+"method": "_finishShooting"
+} ]
+}
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+
+[node name="Colt" type="Position2D" groups=[
+"playerWeapon",
+]]
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "reset"
+anims/lastBullet = SubResource( 1 )
+anims/reload = SubResource( 2 )
+anims/reset = SubResource( 3 )
+anims/shootColt = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Cargador" type="AnimatedSprite" parent="Area2D"]
+position = Vector2( -13.3484, 122.382 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D"]
+frames = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 7 )
+
+[node name="ShotSound" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource( 2 )
+bus = "SFX"
+
+[node name="ReloadSound1" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource( 16 )
+
+[node name="ReloadSound2" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource( 18 )
+
+[node name="ReloadSound3" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource( 17 )

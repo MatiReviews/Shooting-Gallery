@@ -1,0 +1,310 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/textures/soldier/soldier_idle.png" type="Texture" id=1]
+[ext_resource path="res://Assets/textures/soldier/soldier_shoot.png" type="Texture" id=2]
+[ext_resource path="res://Assets/textures/soldier/soldier_die.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Soldier.gd" type="Script" id=4]
+[ext_resource path="res://Assets/sounds/machinegun_single.wav" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Soldier/collider/shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Soldier/collider/soldier_idle:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Soldier/collider:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 185.267 ), Vector2( 0, -97.7643 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Soldier/collider/soldier_idle:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Soldier/collider/soldier_idle:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Soldier/collider/shape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Soldier/collider/shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Soldier/collider/soldier_idle:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Soldier/collider:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -97.7643 ), Vector2( 0, 190.273 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_reset_timer"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Soldier/collider/soldier_idle:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Soldier/collider/shape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Soldier/collider/soldier_idle:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Soldier/collider:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 190.273 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Soldier/collider/shape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Soldier/collider/soldier_idle:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.5, 0.6, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1, 0, 1, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Soldier/collider:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -97.7643 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot"
+}, {
+"args": [  ],
+"method": "shoot"
+}, {
+"args": [  ],
+"method": "shoot"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.3
+
+[sub_resource type="AudioStreamRandomPitch" id=7]
+audio_stream = ExtResource( 5 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 96.6313
+height = 220.646
+
+[node name="Soldier" type="Position2D" groups=[
+"enemies",
+]]
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "reset"
+anims/appear = SubResource( 1 )
+anims/die = SubResource( 2 )
+anims/disappear = SubResource( 3 )
+anims/reset = SubResource( 4 )
+anims/shoot = SubResource( 5 )
+anims/wait = SubResource( 6 )
+next/appear = "wait"
+next/die = "reset"
+next/disappear = "reset"
+next/shoot = "disappear"
+next/wait = "shoot"
+
+[node name="collider" type="Area2D" parent="."]
+position = Vector2( 0, 190.273 )
+
+[node name="shotSound" type="AudioStreamPlayer2D" parent="collider"]
+stream = SubResource( 7 )
+volume_db = 4.0
+pitch_scale = 1.5
+bus = "SFX"
+
+[node name="soldier_idle" type="AnimatedSprite" parent="collider"]
+frames = SubResource( 8 )
+
+[node name="shape" type="CollisionShape2D" parent="collider"]
+position = Vector2( -4.23352, 22.6923 )
+shape = SubResource( 9 )
+disabled = true
+
+[node name="appear_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="input_event" from="collider" to="." method="_on_collider_input_event"]
+[connection signal="timeout" from="appear_timer" to="." method="_on_appear_timer_timeout"]
