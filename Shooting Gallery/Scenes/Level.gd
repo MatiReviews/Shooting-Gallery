@@ -23,6 +23,8 @@ var car_Score = 18
 
 var temp = reset_Score_Points
 
+var rifle_particles = preload("res://Scenes/Particles/Rifle_Particle.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().call_group("enemies", "connect", "fired", self, "_on_Soldier_fired")
@@ -42,7 +44,7 @@ func _process(delta):
 	_playerDead()
 	_Show_Player_Ammo()
 	_Show_Player_health()
-	_Show_Player_Score()	
+	_Show_Player_Score()
 	pass
 
 func _on_Soldier_fired():
@@ -106,7 +108,8 @@ func _input(event):
 	#if (event.is_pressed() and event.button_index == BUTTON_LEFT):
 	if event.is_action_pressed("shoot"):
 		if colt._getFinishShooting() != true and colt._getAmmo() != colt._getEmpty() and colt._isReloading() == false:
-			colt._printAmmo()
+			#colt._printAmmo()
+			_spawn_rifle_particles()
 			#print("disparé: " + str(disp))
 			soldier_1._setTemp(true)
 			car._setTemp(true)
@@ -120,3 +123,10 @@ func _input(event):
 
 func _collectedPU():
 	player._resetHealth()
+
+func _spawn_rifle_particles():
+	var new_particles = rifle_particles.instance()
+	add_child(new_particles)
+	new_particles.emitting = true
+	new_particles.global_position = get_global_mouse_position()
+	pass

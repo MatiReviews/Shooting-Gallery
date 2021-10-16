@@ -15,6 +15,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	_printAmmo()
 	if(Input.is_action_pressed("reload")):
 		reloading = true
 		_resetAmmo()
@@ -23,8 +24,9 @@ func _shoot():
 	if ammo > 1:
 		get_node("AnimationPlayer").play("shootColt")
 		ammo-=1
-	elif ammo <= 1:
+	elif ammo == 1:
 		get_node("AnimationPlayer").play("lastBullet")
+		ammo-=1
 	temp = true
 
 func _shootSound():
@@ -57,7 +59,7 @@ func _getEmpty():
 	return empty
 
 func _printAmmo():
-	print(ammo-1)
+	print(ammo)
 
 func _isReloading():
 	return reloading
