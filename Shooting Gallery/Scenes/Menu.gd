@@ -1,9 +1,9 @@
 extends Control
 
 func _ready():
-	$Label.text = "Scores: " + str(Globals.score)
-	for score in Globals.score:
-		$Label.text += str(score)
+#	$Label.text = "Scores: " + str(Globals.score)
+#	for score in Globals.score:
+	$Label.text += ": " + str(Globals.score)
 		
 	#en que iteracion
 #	for i in Globals.scores.size():

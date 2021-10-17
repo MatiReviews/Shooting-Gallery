@@ -13,15 +13,12 @@ onready var car = $Car
 onready var player = $UI/Player
 onready var powerUp = $PU_Health
 
-var score : int = 0
 var reset_Score_Points = 50
 var player_hp = 100
 
 var easy_Score = 9
 var hard_Score = 13
 var car_Score = 18
-
-var temp = reset_Score_Points
 
 var rifle_particles = preload("res://Scenes/Particles/Rifle_Particle.tscn")
 
@@ -43,49 +40,48 @@ func _process(delta):
 	player._set_Damage_Sprite()
 	_playerDead()
 	_Show_Player_Ammo()
-	_Show_Player_health()
-	_Show_Player_Score()
+	#_Show_Player_health()
+	health_txt = player._Show_Player_health()
+	player._Show_Player_Score(score_txt)
 	pass
 
 func _on_Soldier_fired():
-	player._setDamage(soldier_1._getDamage())
-	#_Show_Player_health()
-
-func _on_Soldier_killed():
-	score += easy_Score
-	Globals.score = score
-	#_Show_Player_Score()
+	player._set_Damage(soldier_1._getDamage())
 
 func _on_Soldier_Shotgun_fired():
-	player._setDamage(soldier_Shotgun._getDamage())
-	#_Show_Player_health()
-
-func _on_Soldier_Shotgun_killed():
-	score += hard_Score
-	#_Show_Player_Score()
+	player._set_Damage(soldier_Shotgun._getDamage())
 
 func _on_Car_fired():
-	player._setDamage(car._getDamage())
-	#_Show_Player_health()
+	player._set_Damage(car._getDamage())
+
+
+func _on_Soldier_killed():
+	player._set_Player_Score(easy_Score)
+	Globals.score = player._get_Player_Score()
+
+func _on_Soldier_Shotgun_killed():
+	player._set_Player_Score(hard_Score) 
+	Globals.score = player._get_Player_Score()
 
 func _on_Car_killed():
-	score += car_Score
-	#_Show_Player_Score()
+	player._set_Player_Score(car_Score)  
+	Globals.score = player._get_Player_Score()
+
 
 func _on_Timer_timeout():
 	anims_Explo.play("Explosion")
 
 func _Show_Player_health():
-	health_txt.text = "Vida: " + str(player._getHealth())
+	health_txt.text = "Vida: " + str(player._get_Health())
 
 func _Show_Player_Score():
-	score_txt.text = "Score " + str(score)
+	score_txt.text = "Score " + str(player._get_Player_Score())
 
 func _Show_Player_Ammo():
 	ammo_txt.text = "Ammo " + str(colt._getAmmo())
 
 func _playerDead():
-	if player._getHealth() <= 0:
+	if player._get_Health() <= 0:
 		_gameover()
 
 func _gameover():
@@ -100,9 +96,9 @@ func _player_Shoot():
 	pass
 
 func _reset_health():
-	if score >= temp:
-		player._resetHealth()
-		temp+=reset_Score_Points
+	if player._get_Player_Score() >= player._reset_Player_Points():
+		player._reset_Health()
+		player._add_Score()
 
 func _input(event):
 	#if (event.is_pressed() and event.button_index == BUTTON_LEFT):
@@ -122,7 +118,7 @@ func _input(event):
 			_player_Shoot()
 
 func _collectedPU():
-	player._resetHealth()
+	player._reset_Health()
 
 func _spawn_rifle_particles():
 	var new_particles = rifle_particles.instance()
