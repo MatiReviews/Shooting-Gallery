@@ -22,6 +22,8 @@ var car_Score = 18
 
 var rifle_particles = preload("res://Scenes/Particles/Rifle_Particle.tscn")
 
+var ri_Particles_Pos = Vector2(40.0,60.0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().call_group("enemies", "connect", "fired", self, "_on_Soldier_fired")
@@ -36,13 +38,15 @@ func _ready():
 	get_tree().call_group("PowerUp", "connect", "collected", self, "_collectedPU")
 
 func _process(delta):
-	_reset_health()
+	player._reset_Health()
 	player._set_Damage_Sprite()
-	_playerDead()
-	_Show_Player_Ammo()
-	#_Show_Player_health()
-	health_txt = player._Show_Player_health()
-	player._Show_Player_Score(score_txt)
+	
+	if player._player_Dead():
+		_gameover()
+	
+	_Show_Ammo()
+	health_txt.text = player._Show_Player_health()
+	score_txt.text = player._Show_Player_Score()
 	pass
 
 func _on_Soldier_fired():
@@ -56,33 +60,23 @@ func _on_Car_fired():
 
 
 func _on_Soldier_killed():
-	player._set_Player_Score(easy_Score)
-	Globals.score = player._get_Player_Score()
+	player._set_Score(easy_Score)
+	Globals.score = player._get_Score()
 
 func _on_Soldier_Shotgun_killed():
-	player._set_Player_Score(hard_Score) 
-	Globals.score = player._get_Player_Score()
+	player._set_Score(hard_Score) 
+	Globals.score = player._get_Score()
 
 func _on_Car_killed():
-	player._set_Player_Score(car_Score)  
-	Globals.score = player._get_Player_Score()
+	player._set_Score(car_Score)  
+	Globals.score = player._get_Score()
 
 
 func _on_Timer_timeout():
 	anims_Explo.play("Explosion")
 
-func _Show_Player_health():
-	health_txt.text = "Vida: " + str(player._get_Health())
-
-func _Show_Player_Score():
-	score_txt.text = "Score " + str(player._get_Player_Score())
-
-func _Show_Player_Ammo():
+func _Show_Ammo():
 	ammo_txt.text = "Ammo " + str(colt._getAmmo())
-
-func _playerDead():
-	if player._get_Health() <= 0:
-		_gameover()
 
 func _gameover():
 	anims_fade.play("gameover")
@@ -94,11 +88,6 @@ func _to_menu():
 func _player_Shoot():
 	colt._shoot()
 	pass
-
-func _reset_health():
-	if player._get_Player_Score() >= player._reset_Player_Points():
-		player._reset_Health()
-		player._add_Score()
 
 func _input(event):
 	#if (event.is_pressed() and event.button_index == BUTTON_LEFT):
@@ -124,5 +113,5 @@ func _spawn_rifle_particles():
 	var new_particles = rifle_particles.instance()
 	add_child(new_particles)
 	new_particles.emitting = true
-	new_particles.global_position = get_global_mouse_position()
+	new_particles.global_position = get_global_mouse_position() + ri_Particles_Pos
 	pass
