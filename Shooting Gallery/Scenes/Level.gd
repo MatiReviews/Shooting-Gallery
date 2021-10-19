@@ -42,6 +42,8 @@ func _process(delta):
 	player._set_Damage_Sprite()
 	
 	if player._player_Dead():
+		#Globals.scores.append(player._get_Score())
+		Globals._add_Scores(player._get_Score())
 		_gameover()
 	
 	_Show_Ammo()

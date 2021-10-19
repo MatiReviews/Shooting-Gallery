@@ -5,7 +5,7 @@ onready var health = reset_Healh
 onready var Anims = $AnimationPlayer
 var score : int = 0
 var reset_Score_Points = 50
-var temp = 0
+var temp = reset_Score_Points
 
 signal hit()
 
@@ -38,7 +38,7 @@ func _set_Score(_score):
 	score += _score
 
 func _reset_Health():
-	if _get_Score() >= _reset_Player_Points():
+	if _get_Score() >= _get_Temp():
 		health = reset_Healh
 		_add_Score()
 
@@ -47,6 +47,9 @@ func _reset_Player_Points():
 
 func _add_Score():
 	temp += reset_Score_Points
+
+func _get_Temp():
+	return temp
 
 func _Show_Player_Score():
 	return "Score " + str(_get_Score())
