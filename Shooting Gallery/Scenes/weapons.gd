@@ -5,7 +5,7 @@ signal finish()
 onready var temp : bool = false
 onready var reloading : bool = false
 
-const fixedAmmo = 7
+const fixedAmmo = 8
 onready var ammo : int = fixedAmmo
 
 const empty = 0
@@ -53,7 +53,7 @@ func _getAmmo():
 
 func _resetAmmo():
 	get_node("AnimationPlayer").play("reload")
-	ammo = 7
+	ammo = fixedAmmo
 
 func _getEmpty():
 	return empty

@@ -20,8 +20,7 @@ func _ready():
 		print("Config Loaded")
 		set_fullscreen(config.get_value("graphics","fullscreen", []))
 		scores = config.get_value("stats", "scores", [])
-		xd = config.get_value("Audio", "Master", 100.0)
-		_set_Master_Volume(80)
+		_set_Master_Volume(config.get_value("Audio", "Master", []))
 
 func _add_Scores(new_score: int):
 	scores.append(new_score)

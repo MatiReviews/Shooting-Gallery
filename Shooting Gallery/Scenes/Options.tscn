@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Options.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/kenvector_future.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 125
+font_data = ExtResource( 2 )
+
+[node name="Options" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -352.715
+margin_top = -428.576
+margin_right = -206.715
+margin_bottom = -388.576
+rect_scale = Vector2( 4.50825, 4.50825 )
+text = "Fullscreen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVol" type="Label" parent="."]
+margin_left = 343.086
+margin_top = 341.044
+margin_right = 468.086
+margin_bottom = 359.044
+rect_scale = Vector2( 5.29013, 5.29013 )
+custom_fonts/font = SubResource( 1 )
+text = "Master Vol"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 989.086
+margin_top = 341.044
+margin_right = 1058.09
+margin_bottom = 357.044
+rect_scale = Vector2( 8.4, 5.80952 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 509.483
+margin_top = 361.266
+margin_right = 937.483
+margin_bottom = 509.266
+rect_scale = Vector2( 0.936754, 0.936754 )
+custom_fonts/font = SubResource( 2 )
+text = "Back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

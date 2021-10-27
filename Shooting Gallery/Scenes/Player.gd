@@ -1,6 +1,6 @@
 extends Position2D
 
-onready var reset_Healh : int = 10
+onready var reset_Healh : int = 100
 onready var health = reset_Healh
 onready var Anims = $AnimationPlayer
 var score : int = 0
